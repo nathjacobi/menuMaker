@@ -9,21 +9,9 @@ public class Menu {
 	
 	public Menu() {
 		menuList = new ArrayList<Recipe>();
-		fillMenu();
 	}
 	
-	
-	
-	private void fillMenu() {
-		System.out.println("How many days do you want to plan for: ");
-		Scanner input = new Scanner(System.in);
-		String userInput = input.nextLine();
-		
-		daysRequested = Integer.parseInt(userInput);
-		
-		for (int i=0; i<daysRequested; i++) {
-			menuList.add(new Recipe("a"));
-		}
+	public void fillMenu(int numberDays) {
 	}
 
 	public void printMenu() {
@@ -37,4 +25,14 @@ public class Menu {
 		menu.printMenu();
 		
 	}
+
+	public ArrayList<Recipe> getMenuList() {
+		return menuList;
+	}
+
+	public int getDaysRequested() {
+		return daysRequested;
+	}
+	
+	
 }
