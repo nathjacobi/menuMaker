@@ -12,12 +12,19 @@ public class Menu {
 	}
 	
 	public void fillMenu(int numberDays) {
-		menuList.clear();
-		for (int i=0; i<numberDays; i++) {
+		for (int i=menuList.size(); i<numberDays; i++) {
 			menuList.add(new Recipe("temp", 0));
 		}
 	}
-
+	
+	public void addRecipeToMenu(Recipe recipe) {
+		menuList.add(recipe);
+	}
+	
+	public void clearMenu() {
+		menuList.clear();
+	}
+	
 	public void printMenu() {
 		for (int i=0; i<menuList.size(); i++) {
 			System.out.println(menuList.get(i));

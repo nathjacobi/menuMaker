@@ -23,12 +23,15 @@ public class MenuTests {
 		mainMenu.fillMenu(testValue1);
 		assertTrue(mainMenu.getMenuList().size() == testValue1);
 		
+		mainMenu.clearMenu();
+		
 		mainMenu.fillMenu(testValue2);
 		assertTrue(mainMenu.getMenuList().size() == testValue2);
 		
+		mainMenu.clearMenu();
+		
 		mainMenu.fillMenu(testValue3);
 		assertTrue(mainMenu.getMenuList().size() == testValue3);
-		
 	}
 	
 	@Test
@@ -36,6 +39,10 @@ public class MenuTests {
 		Recipe milkChickenRecipe = new Recipe("Milk Chicken", 2);
 		Recipe bbqChicken = new Recipe("BBQ Chicken", 1);
 		Recipe beefRoast = new Recipe("Beef Roast", 3);
+		
+		mainMenu.addRecipeToMenu(milkChickenRecipe);
+		mainMenu.addRecipeToMenu(beefRoast);
+		mainMenu.addRecipeToMenu(bbqChicken);
 		
 		mainMenu.fillMenu(6);
 		assertTrue(mainMenu.getMenuList().contains(milkChickenRecipe));
