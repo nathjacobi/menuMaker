@@ -30,4 +30,17 @@ public class MenuTests {
 		assertTrue(mainMenu.getMenuList().size() == testValue3);
 		
 	}
+	
+	@Test
+	public void checkRecipeAdded(){
+		Recipe milkChickenRecipe = new Recipe("Milk Chicken", 2);
+		Recipe bbqChicken = new Recipe("BBQ Chicken", 1);
+		Recipe beefRoast = new Recipe("Beef Roast", 3);
+		
+		mainMenu.fillMenu(6);
+		assertTrue(mainMenu.getMenuList().contains(milkChickenRecipe));
+		assertTrue(mainMenu.getMenuList().contains(bbqChicken));
+		assertTrue(mainMenu.getMenuList().contains(beefRoast));
+		
+	}
 }

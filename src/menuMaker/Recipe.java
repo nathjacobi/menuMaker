@@ -5,11 +5,12 @@ import java.util.ArrayList;
 public class Recipe {
 	ArrayList<Item> recipeItems;
 	String name;
-	int daysUseable = 0;
+	int daysUseable;
 	
-	public Recipe(String name) {
+	public Recipe(String name, int daysUseable) {
 		recipeItems = new ArrayList<Item>();
 		this.name = name;
+		this.daysUseable = daysUseable;
 	}
 
 	@Override

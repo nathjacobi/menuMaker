@@ -14,7 +14,7 @@ public class Menu {
 	public void fillMenu(int numberDays) {
 		menuList.clear();
 		for (int i=0; i<numberDays; i++) {
-			menuList.add(new Recipe("temp"));
+			menuList.add(new Recipe("temp", 0));
 		}
 	}
 
