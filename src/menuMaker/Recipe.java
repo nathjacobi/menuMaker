@@ -3,9 +3,9 @@ package menuMaker;
 import java.util.ArrayList;
 
 public class Recipe {
-	ArrayList<Item> recipeItems;
-	String name;
-	int daysUseable;
+	private ArrayList<Item> recipeItems;
+	private String name;
+	private int daysUseable;
 	
 	public Recipe(String name, int daysUseable) {
 		recipeItems = new ArrayList<Item>();

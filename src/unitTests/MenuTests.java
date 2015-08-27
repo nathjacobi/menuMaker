@@ -16,22 +16,32 @@ public class MenuTests {
 	
 	@Test
 	public void checkMenuFilling(){
+		Recipe milkChickenRecipe = new Recipe("Milk Chicken", 2);
+		Recipe bbqChicken = new Recipe("BBQ Chicken", 1);
+		Recipe beefRoast = new Recipe("Beef Roast", 3);
+		
+		mainMenu.setAllowRepeats(true);
+		
+		mainMenu.addRecipe(milkChickenRecipe);
+		mainMenu.addRecipe(beefRoast);
+		mainMenu.addRecipe(bbqChicken);
+		
 		int testValue1 = 14;
 		int testValue2 = 10;
 		int testValue3 = 7;
 		
 		mainMenu.fillMenu(testValue1);
-		assertTrue(mainMenu.getMenuList().size() == testValue1);
+		assertTrue(mainMenu.getDaysCovered() == testValue1);
 		
 		mainMenu.clearMenu();
 		
 		mainMenu.fillMenu(testValue2);
-		assertTrue(mainMenu.getMenuList().size() == testValue2);
+		assertTrue(mainMenu.getDaysCovered() == testValue2);
 		
 		mainMenu.clearMenu();
 		
 		mainMenu.fillMenu(testValue3);
-		assertTrue(mainMenu.getMenuList().size() == testValue3);
+		assertTrue(mainMenu.getDaysCovered() == testValue3);
 	}
 	
 	@Test
@@ -40,9 +50,11 @@ public class MenuTests {
 		Recipe bbqChicken = new Recipe("BBQ Chicken", 1);
 		Recipe beefRoast = new Recipe("Beef Roast", 3);
 		
-		mainMenu.addRecipeToMenu(milkChickenRecipe);
-		mainMenu.addRecipeToMenu(beefRoast);
-		mainMenu.addRecipeToMenu(bbqChicken);
+		mainMenu.setAllowRepeats(false);
+		
+		mainMenu.addRecipe(milkChickenRecipe);
+		mainMenu.addRecipe(beefRoast);
+		mainMenu.addRecipe(bbqChicken);
 		
 		mainMenu.fillMenu(6);
 		assertTrue(mainMenu.getMenuList().contains(milkChickenRecipe));
@@ -52,25 +64,25 @@ public class MenuTests {
 	}
 	
 	@Test
-	public void checkMenuCoversDays() {
+	public void checkMenuCoversDaysWithRepeats() {
 		Recipe milkChickenRecipe = new Recipe("Milk Chicken", 2);
 		Recipe bbqChicken = new Recipe("BBQ Chicken", 1);
 		Recipe beefRoast = new Recipe("Beef Roast", 3);
 		
-		int daysCovered = 0;
+		
+		mainMenu.addRecipe(milkChickenRecipe);
+		mainMenu.addRecipe(beefRoast);
+		mainMenu.addRecipe(bbqChicken);
+		
 		int testValue1 = 5;
 		int testValue2 = 4;
 		
+		mainMenu.setAllowRepeats(true);
+		
 		mainMenu.fillMenu(testValue1);
-		for (Recipe recipe : mainMenu.getMenuList()) {
-			daysCovered += recipe.getDaysUseable();
-		}
-		assertTrue(testValue1 == daysCovered);
+		assertTrue(testValue1 == mainMenu.getDaysCovered());
 		
 		mainMenu.fillMenu(testValue2);
-		for (Recipe recipe : mainMenu.getMenuList()) {
-			daysCovered += recipe.getDaysUseable();
-		}
-		assertTrue(testValue2 == daysCovered);
+		assertTrue(testValue2 == mainMenu.getDaysCovered());
 	}
 }

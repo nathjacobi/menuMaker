@@ -1,24 +1,42 @@
 package menuMaker;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Menu {
-	ArrayList<Recipe> menuList;
-	int daysRequested = 0;
+	private ArrayList<Recipe> menuList;
+	private int daysRequested = 0;
+	private ArrayList<Recipe> recipesAvailable;
+	private Random rand;
+	private boolean allowRepeats = false;
+	private int daysCovered = 0;
 	
 	public Menu() {
 		menuList = new ArrayList<Recipe>();
+		recipesAvailable = new ArrayList<Recipe>();
+		rand = new Random(System.nanoTime());
 	}
 	
 	public void fillMenu(int numberDays) {
-		for (int i=menuList.size(); i<numberDays; i++) {
-			menuList.add(new Recipe("temp", 0));
+		int recipeSelection = 0;
+		daysCovered = 0;
+		while (daysCovered < numberDays) {
+			Recipe pickedRecipe;
+			recipeSelection = rand.nextInt(100000) % recipesAvailable.size();
+			pickedRecipe = recipesAvailable.get(recipeSelection);
+			if ((daysCovered + pickedRecipe.getDaysUseable() <= numberDays)) {
+				menuList.add(pickedRecipe);
+				daysCovered += pickedRecipe.getDaysUseable();
+				if (!allowRepeats) {
+					recipesAvailable.remove(recipeSelection);
+				}
+			}
 		}
 	}
 	
-	public void addRecipeToMenu(Recipe recipe) {
-		menuList.add(recipe);
+	public void addRecipe(Recipe recipe) {
+		recipesAvailable.add(recipe);
 	}
 	
 	public void clearMenu() {
@@ -45,5 +63,14 @@ public class Menu {
 		return daysRequested;
 	}
 	
+	public boolean getAllowRepeats(){
+		return allowRepeats;
+	}
 	
+	public void setAllowRepeats(boolean repeats) {
+		allowRepeats = repeats;
+	}
+	public int getDaysCovered() {
+		return daysCovered;
+	}
 }
