@@ -17,6 +17,11 @@ public class Recipe {
 	public String toString() {
 		return "Recipe [recipeItems=" + recipeItems + ", name=" + name + "]";
 	}
+
+	public int getDaysUseable() {
+		// TODO Auto-generated method stub
+		return daysUseable;
+	}
 	
 	
 }
