@@ -72,4 +72,18 @@ public class MenuTests {
 		mainMenu.fillMenu(testValue2);
 		assertTrue(testValue2 == mainMenu.getDaysCovered());
 	}
+	
+	@Test
+	public void checkRecipeRemovedAfterRepeatCap() {
+		Recipe hamSteak = new Recipe("Ham Steak", 1);
+		Menu testMenu = new Menu();
+		
+		testMenu.setAllowRepeats(true);
+		
+		testMenu.addRecipe(hamSteak);
+		testMenu.fillMenu(3);
+		
+		assertFalse(testMenu.getRecipesAvailable().contains(hamSteak));
+		
+	}
 }

@@ -23,6 +23,7 @@ public class Menu {
 		daysCovered = 0;
 		while (daysCovered < numberDays) {
 			Recipe pickedRecipe;
+			System.out.println(recipesAvailable.size());
 			recipeSelection = rand.nextInt(100000) % recipesAvailable.size();
 			pickedRecipe = recipesAvailable.get(recipeSelection);
 			if ((daysCovered + pickedRecipe.getDaysUseable() <= numberDays)) {
@@ -36,6 +37,7 @@ public class Menu {
 	}
 	
 	public void addRecipe(Recipe recipe) {
+		System.out.println("Adding " + recipe);
 		recipesAvailable.add(recipe);
 	}
 	
@@ -59,6 +61,10 @@ public class Menu {
 		return menuList;
 	}
 
+	public ArrayList<Recipe> getRecipesAvailable() {
+		return recipesAvailable;
+	}
+	
 	public int getDaysRequested() {
 		return daysRequested;
 	}
